@@ -65,45 +65,27 @@ my_applio = loadThemes.load_theme() or "ParityError/Interstellar"
 
 # Define Gradio interface
 with gr.Blocks(
-    theme=my_applio, title="Applio", css="footer{display:none !important}"
+    theme=my_applio, title="Voicy", css="footer{display:none !important}"
 ) as Applio:
-    gr.Markdown("# Applio")
+    gr.Markdown("# Voicy")
     gr.Markdown(
         i18n(
-            "A simple, high-quality voice conversion tool focused on ease of use and performance."
+            "Designed, coded, and developed by ahm3texe"
         )
     )
     gr.Markdown(
         i18n(
-            "[Support](https://discord.gg/urxFjYmYYh) — [GitHub](https://github.com/IAHispano/Applio)"
+            "[Support](https://api.whatsapp.com/send?phone=905511690559) — [GitHub]()"
         )
     )
     with gr.Tab(i18n("Inference")):
         inference_tab()
 
-    with gr.Tab(i18n("Training")):
-        train_tab()
 
-    with gr.Tab(i18n("TTS")):
-        tts_tab()
-
-    with gr.Tab(i18n("Voice Blender")):
-        voice_blender_tab()
-
-    with gr.Tab(i18n("Plugins")):
-        plugins_tab()
 
     with gr.Tab(i18n("Download")):
         download_tab()
 
-    with gr.Tab(i18n("Report a Bug")):
-        report_tab()
-
-    with gr.Tab(i18n("Extra")):
-        extra_tab()
-
-    with gr.Tab(i18n("Settings")):
-        settings_tab()
 
     gr.Markdown(
         """
