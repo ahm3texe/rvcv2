@@ -68,24 +68,15 @@ with gr.Blocks(
     theme=my_applio, title="Voicy", css="footer{display:none !important}"
 ) as Applio:
     gr.Markdown("# Voicy")
+    gr.Markdown(i18n("Designed, coded, and developed by ahm3texe"))
     gr.Markdown(
-        i18n(
-            "Designed, coded, and developed by ahm3texe"
-        )
-    )
-    gr.Markdown(
-        i18n(
-            "[Support](https://api.whatsapp.com/send?phone=905511690559) — [GitHub]()"
-        )
+        i18n("[Support](https://api.whatsapp.com/send?phone=905511690559) — [GitHub]()")
     )
     with gr.Tab(i18n("Inference")):
         inference_tab()
 
-
-
     with gr.Tab(i18n("Download")):
         download_tab()
-
 
     gr.Markdown(
         """
