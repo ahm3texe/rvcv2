@@ -22,15 +22,15 @@ import rvc.lib.zluda
 
 # Import Tabs
 from tabs.inference.inference import inference_tab
-from tabs.train.train import train_tab
-from tabs.extra.extra import extra_tab
-from tabs.report.report import report_tab
-from tabs.download.download import download_tab
-from tabs.tts.tts import tts_tab
-from tabs.voice_blender.voice_blender import voice_blender_tab
-from tabs.plugins.plugins import plugins_tab
-from tabs.settings.settings import settings_tab
-from tabs.realtime.realtime import realtime_tab
+#from tabs.train.train import train_tab
+#from tabs.extra.extra import extra_tab
+#from tabs.report.report import report_tab
+#from tabs.download.download import download_tab
+#from tabs.tts.tts import tts_tab
+#from tabs.voice_blender.voice_blender import voice_blender_tab
+#from tabs.plugins.plugins import plugins_tab
+#from tabs.settings.settings import settings_tab
+#from tabs.realtime.realtime import realtime_tab
 
 # Run prerequisites
 from core import run_prerequisites_script
