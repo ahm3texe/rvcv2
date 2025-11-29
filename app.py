@@ -68,7 +68,7 @@ my_applio = loadThemes.load_theme() or "ParityError/Interstellar"
 with gr.Blocks(
     theme=my_applio, title="SVC", css="footer{display:none !important}"
 ) as Applio:
-    gr.Markdown("# Applio")
+    gr.Markdown("# SVC")
     gr.Markdown(
         i18n(
             "Sesten sese dönüşüm sağlayan yapay zeka modeli."
