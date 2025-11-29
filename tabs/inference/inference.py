@@ -1180,7 +1180,7 @@ def inference_tab():
             return run_batch_infer_script(*args)
 
         terms_checkbox = gr.Checkbox(
-            label=i18n("I agree to the terms of use"),
+            label=i18n("Sözleşmeyi kabul ediyorum diye işaretler."),
             info=i18n(
                 "Burası sözleşme vs. eklenir diye"
             ),
@@ -1192,13 +1192,13 @@ def inference_tab():
 
         with gr.Row():
             vc_output1 = gr.Textbox(
-                label=i18n("Output Information"),
-                info=i18n("The output information will be displayed here."),
+                label=i18n("Output Bilgisi"),
+                info=i18n("Output dosya yolu burada gözükür."),
             )
             vc_output2 = gr.Audio(label=i18n("Export Audio"))
 
     # Batch inference tab
-    with gr.Tab(i18n("Batch")):
+    with gr.Tab(i18n("Batch"), visible=False):
         with gr.Row():
             with gr.Column():
                 input_folder_batch = gr.Textbox(
@@ -2330,4 +2330,5 @@ def inference_tab():
         inputs=[],
         outputs=[convert_button_batch, stop_button],
     )
+
 
