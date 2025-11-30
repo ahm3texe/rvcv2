@@ -37,6 +37,7 @@ class HubertModelWithFinalProj(HubertModel):
 def load_audio_16k(file):
     # this is used by f0 and feature extractions that load preprocessed 16k files, so there's no need to resample
     try:
+        # Librosa handles m4a/mp3 fine by default if ffmpeg is installed
         audio, sr = librosa.load(file, sr=16000)
     except Exception as error:
         raise RuntimeError(f"An error occurred loading the audio: {error}")
@@ -47,7 +48,19 @@ def load_audio_16k(file):
 def load_audio(file, sample_rate):
     try:
         file = file.strip(" ").strip('"').strip("\n").strip('"').strip(" ")
-        audio, sr = sf.read(file)
+        
+        # --- FIXED BLOCK START ---
+        try:
+            # Try loading with soundfile (fastest for wav)
+            audio, sr = sf.read(file)
+        except Exception:
+            # Fallback to librosa for m4a, mp3, etc.
+            audio, sr = librosa.load(file, sr=None, mono=False)
+            # Match soundfile shape (Samples, Channels)
+            if len(audio.shape) > 1:
+                audio = audio.T
+        # --- FIXED BLOCK END ---
+
         if len(audio.shape) > 1:
             audio = librosa.to_mono(audio.T)
         if sr != sample_rate:
@@ -70,7 +83,20 @@ def load_audio_infer(
         file = file.strip(" ").strip('"').strip("\n").strip('"').strip(" ")
         if not os.path.isfile(file):
             raise FileNotFoundError(f"File not found: {file}")
-        audio, sr = sf.read(file)
+        
+        # --- FIXED BLOCK START ---
+        # This is the critical part for inference (RVC output)
+        try:
+            # Try loading with soundfile
+            audio, sr = sf.read(file)
+        except Exception:
+            # Fallback to librosa for m4a support
+            audio, sr = librosa.load(file, sr=None, mono=False)
+            # Match soundfile shape (Samples, Channels) if stereo
+            if len(audio.shape) > 1:
+                audio = audio.T
+        # --- FIXED BLOCK END ---
+
         if len(audio.shape) > 1:
             audio = librosa.to_mono(audio.T)
         if sr != sample_rate:
